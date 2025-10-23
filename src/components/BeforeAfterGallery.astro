@@ -30,25 +30,25 @@ const gallery = [
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      {gallery.map((item) => (
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
-          <div class="grid grid-cols-2">
-            <div class="relative">
-              <img src={item.before} alt="Before" class="w-full h-48 object-cover" />
-              <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+      {gallery.map((item, idx) => (
+        <div class={`bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:border-cerave-blue/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group animate-scaleIn delay-${idx * 100}`}>
+          <div class="grid grid-cols-2 relative overflow-hidden">
+            <div class="relative overflow-hidden">
+              <img src={item.before} alt="Before" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute top-2 left-2 bg-black/70 text-white text-xs px-3 py-1.5 rounded-lg font-medium backdrop-blur-sm">
                 Before
               </div>
             </div>
-            <div class="relative">
-              <img src={item.after} alt="After" class="w-full h-48 object-cover" />
-              <div class="absolute top-2 right-2 bg-cerave-blue text-white text-xs px-2 py-1 rounded">
+            <div class="relative overflow-hidden">
+              <img src={item.after} alt="After" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute top-2 right-2 bg-cerave-blue text-white text-xs px-3 py-1.5 rounded-lg font-medium shadow-lg">
                 After
               </div>
             </div>
           </div>
-          <div class="p-4">
-            <p class="font-semibold text-cerave-blue mb-1">{item.days} Days</p>
-            <p class="text-sm text-gray-600">{item.concern}</p>
+          <div class="p-5 bg-gradient-to-br from-white to-blue-50/20">
+            <p class="font-bold text-cerave-blue mb-1 text-lg">{item.days} Days</p>
+            <p class="text-sm text-gray-600 font-medium">{item.concern}</p>
           </div>
         </div>
       ))}

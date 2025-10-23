@@ -17,9 +17,11 @@ import { milestones } from '../lib/mock';
       {
         milestones.map((milestone, index) => (
           <div class="flex flex-col items-center text-center group cursor-default">
-            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-cerave-blue to-cerave-light-blue text-white flex flex-col items-center justify-center font-bold mb-4 relative z-10 shadow-lg transition-all group-hover:scale-110 group-hover:shadow-xl">
-              <span class="text-xs">Day</span>
-              <span class="text-xl">{milestone.day}</span>
+            <div class="mb-4 w-16 h-16 bg-cerave-blue/10 rounded-full flex items-center justify-center mx-auto group-hover:bg-cerave-blue/20 group-hover:scale-110 transition-all duration-300">
+              <div class="p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-default group bg-gradient-to-br from-cerave-blue to-cerave-light-blue text-white flex flex-col items-center justify-center font-bold relative z-10 shadow-lg transition-all group-hover:scale-110 group-hover:shadow-xl">
+                <span class="text-xs">Day</span>
+                <span class="text-xl">{milestone.day}</span>
+              </div>
             </div>
             <h3 class="font-bold text-gray-900 mb-2 text-sm">{milestone.title}</h3>
             <p class="text-xs text-gray-600 leading-relaxed">{milestone.note}</p>

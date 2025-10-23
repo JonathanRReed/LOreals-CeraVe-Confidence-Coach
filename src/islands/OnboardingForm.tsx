@@ -110,21 +110,21 @@ export default function OnboardingForm() {
               <button
                 type="button"
                 onClick={() => loadPreset('acne')}
-                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white transition-all"
+                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white active:scale-95 transition-all shadow-sm hover:shadow-md"
               >
                 Acne-Prone
               </button>
               <button
                 type="button"
                 onClick={() => loadPreset('antiaging')}
-                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white transition-all"
+                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white active:scale-95 transition-all shadow-sm hover:shadow-md"
               >
                 Anti-Aging
               </button>
               <button
                 type="button"
                 onClick={() => loadPreset('sensitive')}
-                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white transition-all"
+                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white active:scale-95 transition-all shadow-sm hover:shadow-md"
               >
                 Sensitive
               </button>
@@ -222,7 +222,7 @@ export default function OnboardingForm() {
 
           <Button
             type="submit"
-            className="w-full bg-cerave-blue hover:bg-cerave-blue-dark text-white transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-cerave-blue hover:bg-cerave-blue-dark active:scale-95 text-white transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             size="lg"
             disabled={isGenerating}
           >

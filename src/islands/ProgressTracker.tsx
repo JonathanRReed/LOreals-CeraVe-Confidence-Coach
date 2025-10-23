@@ -73,10 +73,10 @@ export default function ProgressTracker() {
                     key={symptom}
                     type="button"
                     onClick={() => toggleSymptom(symptom)}
-                    className={`px-3 py-2 text-sm rounded-md border transition ${
+                    className={`px-3 py-2 text-xs rounded-md border transition-all duration-200 ${
                       selectedSymptoms.includes(symptom)
-                        ? 'bg-cerave-blue text-white border-cerave-blue'
-                        : 'bg-white text-gray-700 border-gray-300 hover:border-cerave-light-blue'
+                        ? 'bg-cerave-blue text-white border-cerave-blue scale-105 shadow-md'
+                        : 'bg-white text-gray-700 border-gray-300 hover:border-cerave-blue hover:shadow-sm active:scale-95'
                     }`}
                   >
                     {symptom}
@@ -103,12 +103,12 @@ export default function ProgressTracker() {
               <Button
                 onClick={addCheckIn}
                 disabled={selectedSymptoms.length === 0}
-                className="flex-1 bg-cerave-blue hover:bg-cerave-blue-dark hover:shadow-lg transition-all disabled:opacity-50"
+                className="flex-1 bg-cerave-blue hover:bg-cerave-blue-dark active:scale-95 hover:shadow-lg transition-all disabled:opacity-50"
               >
                 <CheckCircle className="w-4 h-4 mr-2" />
-                Save Check-In
+                Add Check-In
               </Button>
-              <Button variant="outline" className="flex items-center">
+              <Button variant="outline" className="flex items-center hover:border-cerave-blue hover:text-cerave-blue active:scale-95 transition-all">
                 <Camera className="w-4 h-4 mr-2" />
                 Photo
               </Button>

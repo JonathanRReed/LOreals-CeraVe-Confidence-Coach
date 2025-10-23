@@ -48,7 +48,7 @@ export default function MythCheck() {
               <Button
                 type="submit"
                 disabled={loading || !claim.trim()}
-                className="w-full bg-cerave-blue hover:bg-cerave-blue-dark hover:shadow-lg transition-all disabled:opacity-50"
+                className="w-full bg-cerave-blue hover:bg-cerave-blue-dark active:scale-95 hover:shadow-lg transition-all disabled:opacity-50"
               >
                 <Search className="w-4 h-4 mr-2" />
                 {loading ? 'Analyzing...' : 'Check This Claim'}

@@ -103,7 +103,7 @@ export default function PatchTestModal() {
           setIsOpen(true);
           console.log('patchtest_started');
         }}
-        className="w-full bg-cerave-blue hover:bg-cerave-blue-dark hover:shadow-lg transition-all"
+        className="w-full bg-cerave-blue hover:bg-cerave-blue-dark active:scale-95 hover:shadow-lg transition-all"
         size="lg"
       >
         Start Patch Test Guide
@@ -135,12 +135,13 @@ export default function PatchTestModal() {
                   onClick={handleBack}
                   variant="outline"
                   disabled={step === 0}
+                  className="active:scale-95 transition-all hover:border-cerave-blue hover:text-cerave-blue"
                 >
                   Back
                 </Button>
                 <Button
                   onClick={handleNext}
-                  className="bg-cerave-blue hover:bg-cerave-blue-dark"
+                  className="bg-cerave-blue hover:bg-cerave-blue-dark active:scale-95 transition-all"
                 >
                   {step < steps.length - 1 ? 'Next' : 'Complete'}
                 </Button>

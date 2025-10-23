@@ -1,28 +1,20 @@
 ---
 ---
 
-<header class="border-b border-gray-200 bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
-  <div class="container mx-auto px-4 py-3">
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm transition-all duration-300" id="header">
+  <div class="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+    <div id="scroll-progress" class="h-full bg-gradient-to-r from-cerave-blue to-cerave-light-blue transition-all duration-150" style="width: 0%"></div>
+  </div>
+  <div class="container mx-auto px-4 py-3 md:py-4">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
         <svg
           class="w-12 h-12"
-          viewBox="0 0 100 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="50" cy="50" r="48" fill="#2A5CAA" />
-          <path
-            d="M30 50 Q35 35, 50 35 Q65 35, 70 50 Q65 65, 50 65 Q35 65, 30 50"
-            fill="#7BA5D6"
-          />
-          <circle cx="50" cy="50" r="15" fill="white" />
-        </svg>
         <div>
-          <h1 class="text-2xl font-bold text-cerave-blue tracking-tight">CeraVe</h1>
+          <h1 class="text-xl md:text-2xl font-bold text-cerave-blue tracking-tight">CeraVe</h1>
           <p class="text-xs text-gray-600 font-medium">Confidence Coach</p>
         </div>
-      </div>
+      </a>
       <nav class="hidden md:flex gap-8">
         <a href="#form" class="text-sm font-medium text-gray-700 hover:text-cerave-blue transition">Get Started</a>
         <a href="#timeline" class="text-sm font-medium text-gray-700 hover:text-cerave-blue transition">Timeline</a>
@@ -32,3 +24,19 @@
     </div>
   </div>
 </header>
+
+<script>
+  // Update scroll progress indicator
+  function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scroll-progress');
+    if (scrollProgress) {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      scrollProgress.style.width = scrolled + '%';
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
+</script>

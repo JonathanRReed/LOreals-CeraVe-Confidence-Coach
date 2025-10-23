@@ -35,7 +35,7 @@ export default function ReminderSetup() {
 
       <Button
         onClick={handleSetReminder}
-        className="w-full bg-cerave-blue hover:bg-cerave-blue-dark hover:shadow-lg transition-all"
+        className="w-full bg-cerave-blue hover:bg-cerave-blue-dark active:scale-95 hover:shadow-lg transition-all"
         size="lg"
       >
         {showSuccess ? (

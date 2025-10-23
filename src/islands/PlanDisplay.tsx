@@ -21,6 +21,7 @@ const stepIcons = {
 export default function PlanDisplay() {
   const [planData, setPlanData] = useState<PlanData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [displayScore, setDisplayScore] = useState(0);
 
   const handlePrint = () => {
     window.print();
@@ -45,6 +46,29 @@ export default function PlanDisplay() {
       alert('Share link copied! (Demo feature)');
     }
   };
+
+  // Animate confidence score counting
+  useEffect(() => {
+    if (planData) {
+      const targetScore = planData.confidence.score;
+      const duration = 1000; // 1 second
+      const steps = 30;
+      const increment = targetScore / steps;
+      let current = 0;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= targetScore) {
+          setDisplayScore(targetScore);
+          clearInterval(timer);
+        } else {
+          setDisplayScore(Math.floor(current));
+        }
+      }, duration / steps);
+      
+      return () => clearInterval(timer);
+    }
+  }, [planData]);
 
   useEffect(() => {
     const handlePlanReady = (event: Event) => {
@@ -71,7 +95,7 @@ export default function PlanDisplay() {
           <div className="h-16 bg-gray-200 rounded animate-pulse"></div>
           <div className="space-y-3 mt-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="flex gap-3 p-4 bg-gray-100 rounded-xl animate-pulse">
+              <div key={i} className="flex gap-4 p-4 bg-gray-50 rounded-lg hover:shadow-lg hover:border-cerave-blue/20 transition-all duration-300 border border-gray-200 group">
                 <div className="w-20 h-20 bg-gray-200 rounded-lg"></div>
                 <div className="flex-1 space-y-2">
                   <div className="h-4 bg-gray-200 rounded w-3/4"></div>
@@ -151,11 +175,9 @@ export default function PlanDisplay() {
                   </div>
                 </div>
               </div>
-              <span className="text-2xl font-bold text-cerave-blue">
-                {confidence.score}% <span className="text-sm font-normal text-gray-600">({confidence.label})</span>
-              </span>
+              <span className="text-2xl font-bold text-cerave-blue tabular-nums">{displayScore}%</span>
             </div>
-            <Progress value={confidence.score} className="h-3 transition-all duration-700" />
+            <Progress value={displayScore} className="h-2 transition-all duration-300" />
             <p className="text-xs text-gray-600 mt-2">
               This score reflects how well your routine matches your profile and includes safety considerations.
             </p>
