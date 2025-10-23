@@ -103,7 +103,7 @@ export default function PatchTestModal() {
           setIsOpen(true);
           console.log('patchtest_started');
         }}
-        className="w-full bg-cerave-blue hover:bg-cerave-blue-dark"
+        className="w-full bg-cerave-blue hover:bg-cerave-blue-dark hover:shadow-lg transition-all"
         size="lg"
       >
         Start Patch Test Guide

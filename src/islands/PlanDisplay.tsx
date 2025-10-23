@@ -3,7 +3,7 @@ import type { RoutinePlan, UserProfile } from '../lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Progress } from '../components/ui/progress';
-import { Sun, Moon, Droplets, Shield, Sparkles } from 'lucide-react';
+import { Sun, Moon, Droplets, Shield, Sparkles, Info } from 'lucide-react';
 
 interface PlanData {
   profile: UserProfile;
@@ -20,22 +20,52 @@ const stepIcons = {
 
 export default function PlanDisplay() {
   const [planData, setPlanData] = useState<PlanData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handlePlanReady = (event: Event) => {
-      const customEvent = event as CustomEvent;
-      setPlanData(customEvent.detail);
+      setIsLoading(true);
+      setTimeout(() => {
+        const customEvent = event as CustomEvent;
+        setPlanData(customEvent.detail);
+        setIsLoading(false);
+      }, 300);
     };
 
     window.addEventListener('plan-ready', handlePlanReady);
     return () => window.removeEventListener('plan-ready', handlePlanReady);
   }, []);
 
+  if (isLoading) {
+    return (
+      <Card className="border-cerave-blue/20 h-full min-h-[500px]">
+        <CardHeader className="bg-gradient-to-r from-cerave-blue/20 to-cerave-light-blue/20">
+          <div className="h-6 bg-cerave-blue/20 rounded w-3/4 mx-auto animate-pulse"></div>
+        </CardHeader>
+        <CardContent className="pt-6 space-y-4">
+          <div className="h-4 bg-gray-200 rounded w-1/3 animate-pulse"></div>
+          <div className="h-16 bg-gray-200 rounded animate-pulse"></div>
+          <div className="space-y-3 mt-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex gap-3 p-4 bg-gray-100 rounded-xl animate-pulse">
+                <div className="w-20 h-20 bg-gray-200 rounded-lg"></div>
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   if (!planData) {
     return (
       <Card className="border-cerave-blue/20 h-full flex items-center justify-center min-h-[500px]">
         <CardContent className="text-center p-12">
-          <div className="w-20 h-20 bg-cerave-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-cerave-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
             <Sparkles className="w-10 h-10 text-cerave-blue" />
           </div>
           <h3 className="text-2xl font-bold text-cerave-blue mb-3">Your Routine Awaits</h3>
@@ -50,7 +80,7 @@ export default function PlanDisplay() {
   const { plan, confidence } = planData;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fadeIn">
       <Card className="border-cerave-blue/30 shadow-lg">
         <CardHeader className="bg-gradient-to-r from-cerave-blue to-cerave-light-blue text-white">
           <CardTitle className="text-xl text-center">Your Personalized Routine</CardTitle>
@@ -58,12 +88,25 @@ export default function PlanDisplay() {
         <CardContent className="pt-5">
           <div className="mb-5">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-gray-700">Confidence Score</span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-gray-700">Confidence Score</span>
+                <div className="group relative">
+                  <Info className="w-4 h-4 text-gray-400 cursor-help" />
+                  <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block w-64 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-lg z-10">
+                    <p className="font-semibold mb-1">How is this calculated?</p>
+                    <p>• Product-skin type match (+10)</p>
+                    <p>• Complete AM/PM routines (+20)</p>
+                    <p>• Sensitivity adjustments (-10 if high)</p>
+                    <p>• Safety education (+10)</p>
+                    <div className="absolute left-4 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
+                  </div>
+                </div>
+              </div>
               <span className="text-2xl font-bold text-cerave-blue">
                 {confidence.score}% <span className="text-sm font-normal text-gray-600">({confidence.label})</span>
               </span>
             </div>
-            <Progress value={confidence.score} className="h-3" />
+            <Progress value={confidence.score} className="h-3 transition-all duration-700" />
             <p className="text-xs text-gray-600 mt-2">
               This score reflects how well your routine matches your profile and includes safety considerations.
             </p>
@@ -85,18 +128,27 @@ export default function PlanDisplay() {
               {plan.am.map((product, idx) => (
                 <div
                   key={product.id}
-                  className="flex gap-3 p-3 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg border border-amber-200"
+                  className="flex gap-3 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200 hover:shadow-md transition-shadow"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 bg-cerave-blue text-white rounded-full flex items-center justify-center font-bold">
-                    {idx + 1}
-                  </div>
+                  {product.imageUrl && (
+                    <div className="flex-shrink-0">
+                      <img 
+                        src={product.imageUrl} 
+                        alt={product.name}
+                        className="w-16 h-16 md:w-20 md:h-20 rounded-lg object-cover shadow-sm"
+                      />
+                    </div>
+                  )}
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
+                      <span className="w-6 h-6 bg-cerave-blue text-white rounded-full flex items-center justify-center font-bold text-xs">
+                        {idx + 1}
+                      </span>
                       {stepIcons[product.step]}
-                      <h4 className="font-semibold text-gray-900 capitalize">{product.step}</h4>
+                      <h4 className="font-semibold text-gray-900 capitalize text-sm">{product.step}</h4>
                     </div>
-                    <p className="font-medium text-cerave-blue mb-1">{product.name}</p>
-                    <p className="text-sm text-gray-600">{product.notes}</p>
+                    <p className="font-bold text-cerave-blue mb-1 text-sm">{product.name}</p>
+                    <p className="text-xs text-gray-600">{product.notes}</p>
                   </div>
                 </div>
               ))}
@@ -106,18 +158,27 @@ export default function PlanDisplay() {
               {plan.pm.map((product, idx) => (
                 <div
                   key={product.id}
-                  className="flex gap-3 p-3 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg border border-indigo-200"
+                  className="flex gap-3 p-4 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl border border-indigo-200 hover:shadow-md transition-shadow"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 bg-cerave-blue text-white rounded-full flex items-center justify-center font-bold">
-                    {idx + 1}
-                  </div>
+                  {product.imageUrl && (
+                    <div className="flex-shrink-0">
+                      <img 
+                        src={product.imageUrl} 
+                        alt={product.name}
+                        className="w-16 h-16 md:w-20 md:h-20 rounded-lg object-cover shadow-sm"
+                      />
+                    </div>
+                  )}
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
+                      <span className="w-6 h-6 bg-cerave-blue text-white rounded-full flex items-center justify-center font-bold text-xs">
+                        {idx + 1}
+                      </span>
                       {stepIcons[product.step]}
-                      <h4 className="font-semibold text-gray-900 capitalize">{product.step}</h4>
+                      <h4 className="font-semibold text-gray-900 capitalize text-sm">{product.step}</h4>
                     </div>
-                    <p className="font-medium text-cerave-blue mb-1">{product.name}</p>
-                    <p className="text-sm text-gray-600">{product.notes}</p>
+                    <p className="font-bold text-cerave-blue mb-1 text-sm">{product.name}</p>
+                    <p className="text-xs text-gray-600">{product.notes}</p>
                   </div>
                 </div>
               ))}

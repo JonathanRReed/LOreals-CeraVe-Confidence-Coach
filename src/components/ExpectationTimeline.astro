@@ -13,11 +13,11 @@ import { milestones } from '../lib/mock';
   <div class="relative max-w-6xl mx-auto">
     <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-cerave-light-blue/50 via-cerave-blue to-cerave-light-blue/50 transform -translate-y-1/2" aria-hidden="true"></div>
     
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 relative">
       {
         milestones.map((milestone, index) => (
-          <div class="flex flex-col items-center text-center">
-            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-cerave-blue to-cerave-light-blue text-white flex flex-col items-center justify-center font-bold mb-4 relative z-10 shadow-lg">
+          <div class="flex flex-col items-center text-center group cursor-default">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-cerave-blue to-cerave-light-blue text-white flex flex-col items-center justify-center font-bold mb-4 relative z-10 shadow-lg transition-all group-hover:scale-110 group-hover:shadow-xl">
               <span class="text-xs">Day</span>
               <span class="text-xl">{milestone.day}</span>
             </div>

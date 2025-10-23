@@ -19,6 +19,7 @@ export interface Product {
   name: string;
   step: 'cleanse' | 'treat' | 'moisturize' | 'spf';
   notes: string;
+  imageUrl?: string;
 }
 
 export interface RoutinePlan {

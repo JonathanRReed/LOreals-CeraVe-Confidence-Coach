@@ -25,61 +25,79 @@ import '../styles/globals.css';
 		<HeaderBrand />
 		
 		<main>
-			<section id="hero" class="py-16 md:py-24 bg-gradient-to-b from-white via-blue-50/20 to-white">
+			<section id="hero" class="py-12 md:py-16 lg:py-24 bg-gradient-to-b from-white via-blue-50/20 to-white">
 				<div class="container mx-auto px-4 text-center max-w-5xl">
-					<h1 class="text-4xl md:text-6xl font-bold text-cerave-blue mb-4 leading-tight">
+					<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-cerave-blue mb-4 leading-tight">
 						Build a Routine You Can Trust
 					</h1>
-					<p class="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+					<p class="text-base md:text-lg lg:text-xl text-gray-700 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
 						Simple steps. Clear expectations. Safer starts. Get a personalized 90-day skincare plan designed for your unique needs.
 					</p>
-					<a href="#form" class="inline-block px-10 py-4 bg-cerave-blue text-white font-semibold text-lg rounded-lg hover:bg-cerave-blue-dark transition shadow-lg">
+					<a href="#form" class="inline-block px-8 md:px-10 py-3 md:py-4 bg-cerave-blue text-white font-semibold text-base md:text-lg rounded-lg hover:bg-cerave-blue-dark hover:scale-105 transition-all shadow-lg hover:shadow-xl">
 						Get Your Routine
 					</a>
 				</div>
 			</section>
 
-			<section id="form" class="py-12 bg-white">
+			<section id="form" class="py-12 md:py-16 bg-white">
 				<div class="container mx-auto px-4 max-w-6xl">
-					<div class="grid lg:grid-cols-5 gap-8">
-						<div class="lg:col-span-2">
+					<div class="text-center mb-10 md:mb-12">
+						<h2 class="text-3xl md:text-4xl font-bold text-cerave-blue mb-3">Your Personalized Plan</h2>
+						<p class="text-gray-600 max-w-2xl mx-auto">Answer a few questions and get a customized 90-day skincare routine tailored to your unique needs.</p>
+					</div>
+					<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8">
+						<div class="lg:col-span-2 order-1">
 							<OnboardingForm client:load />
 						</div>
-						<div class="lg:col-span-3">
+						<div id="plan" class="lg:col-span-3 order-2">
 							<PlanDisplay client:load />
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="timeline" class="py-12 bg-gray-50">
+			<section id="timeline" class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
 				<ExpectationTimeline />
 			</section>
 
-			<section id="tools" class="py-12 bg-white">
+			<section id="tools" class="py-12 md:py-16 bg-white">
 				<div class="container mx-auto px-4 max-w-6xl">
-					<div class="grid md:grid-cols-2 gap-8">
-						<div class="bg-gradient-to-br from-blue-50 to-white border border-cerave-blue/20 rounded-2xl p-8">
+					<div class="text-center mb-10 md:mb-12">
+						<h2 class="text-3xl md:text-4xl font-bold text-cerave-blue mb-3">Your Skincare Toolkit</h2>
+						<p class="text-gray-600 max-w-2xl mx-auto">Essential resources to help you succeed on your skincare journey.</p>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+						<div class="bg-gradient-to-br from-blue-50 to-white border border-cerave-blue/20 rounded-2xl p-6 md:p-8">
 							<PatchTestModal client:idle />
 						</div>
-						<div class="bg-gradient-to-br from-blue-50 to-white border border-cerave-blue/20 rounded-2xl p-8">
+						<div class="bg-gradient-to-br from-blue-50 to-white border border-cerave-blue/20 rounded-2xl p-6 md:p-8">
 							<ReminderSetup client:idle />
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="myth" class="py-12 bg-gray-50">
-				<MythCheck client:idle />
+			<section id="myth" class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+				<div class="container mx-auto px-4 max-w-6xl">
+					<div class="text-center mb-10 md:mb-12">
+						<h2 class="text-3xl md:text-4xl font-bold text-cerave-blue mb-3">Track & Learn</h2>
+						<p class="text-gray-600 max-w-2xl mx-auto">Check skincare claims and monitor your progress along the way.</p>
+					</div>
+					<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start">
+						<div>
+							<MythCheck client:idle />
+						</div>
+						<div>
+							<ProgressTracker client:idle />
+						</div>
+					</div>
+				</div>
 			</section>
 
-			<section id="progress" class="py-12 bg-white">
-				<ProgressTracker client:idle />
-			</section>
-
-			<section class="py-12 bg-gradient-to-b from-cerave-blue/5 to-white">
+			<section class="py-12 md:py-20 bg-gradient-to-b from-cerave-blue/5 via-blue-50/30 to-white">
 				<div class="container mx-auto px-4 text-center max-w-5xl">
-					<h2 class="text-3xl font-bold text-cerave-blue mb-10">Why CeraVe?</h2>
+					<h2 class="text-3xl md:text-4xl font-bold text-cerave-blue mb-4">Why CeraVe?</h2>
+					<p class="text-gray-600 max-w-2xl mx-auto mb-10">Trusted by dermatologists and loved by millions for effective, gentle skincare.</p>
 					<div class="grid md:grid-cols-3 gap-8">
 						<div class="p-6 bg-white rounded-xl shadow-sm">
 							<div class="w-16 h-16 bg-cerave-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">

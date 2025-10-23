@@ -26,19 +26,12 @@ export default function MythCheck() {
   };
 
   return (
-    <div className="container mx-auto px-4 max-w-5xl">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-cerave-blue mb-3">Myth Check Tool</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Confused by a skincare claim? Paste it here to see how it relates to evidence-based dermatology.
-        </p>
-      </div>
-
-        <Card className="border-cerave-blue/20">
-          <CardHeader>
-            <CardTitle className="text-lg">Enter a Skincare Claim</CardTitle>
-            <CardDescription>
-              Example: "Retinol helps with acne" or "Vitamin C brightens skin"
+    <>
+        <Card className="border-cerave-blue/20 h-full shadow-sm">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg md:text-xl text-cerave-blue">Myth Check Tool</CardTitle>
+            <CardDescription className="text-sm">
+              Paste a skincare claim to see evidence-based analysis. Example: "Retinol helps with acne"
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -47,15 +40,15 @@ export default function MythCheck() {
                 <textarea
                   value={claim}
                   onChange={(e) => setClaim(e.target.value)}
-                  placeholder="Paste a claim or statement about skincare ingredients..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-cerave-blue focus:border-transparent resize-none"
-                  rows={4}
+                  placeholder="Paste a claim or statement about skincare..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cerave-blue focus:border-cerave-blue resize-none transition-all hover:border-cerave-light-blue"
+                  rows={3}
                 />
               </div>
               <Button
                 type="submit"
                 disabled={loading || !claim.trim()}
-                className="w-full bg-cerave-blue hover:bg-cerave-blue-dark"
+                className="w-full bg-cerave-blue hover:bg-cerave-blue-dark hover:shadow-lg transition-all disabled:opacity-50"
               >
                 <Search className="w-4 h-4 mr-2" />
                 {loading ? 'Analyzing...' : 'Check This Claim'}
@@ -65,7 +58,7 @@ export default function MythCheck() {
         </Card>
 
         {evidence && (
-          <Card className="mt-6 border-cerave-blue/30">
+          <Card className="mt-4 border-cerave-blue/30">
             <CardHeader className="bg-gradient-to-r from-cerave-blue/5 to-cerave-light-blue/5">
               <CardTitle className="text-cerave-blue">Evidence Assessment</CardTitle>
               <CardDescription className="text-gray-700 italic">"{evidence.claim}"</CardDescription>
@@ -119,6 +112,6 @@ export default function MythCheck() {
             </CardContent>
           </Card>
         )}
-    </div>
+    </>
   );
 }

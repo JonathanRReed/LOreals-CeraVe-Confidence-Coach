@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Camera, CheckCircle } from 'lucide-react';
 
 interface CheckIn {
@@ -37,17 +37,13 @@ export default function ProgressTracker() {
   };
 
   return (
-    <div className="container mx-auto px-4 max-w-5xl">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-cerave-blue mb-3">Track Your Progress</h2>
-        <p className="text-gray-600">
-          Regular check-ins help you see patterns and improvements over time.
-        </p>
-      </div>
-
-        <Card className="border-cerave-blue/20 mb-6">
-          <CardHeader>
-            <CardTitle className="text-lg">Add a Check-In</CardTitle>
+    <>
+        <Card className="border-cerave-blue/20 mb-6 shadow-sm">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg md:text-xl text-cerave-blue">Progress Tracker</CardTitle>
+            <CardDescription className="text-sm">
+              Log daily check-ins to see patterns and improvements over time.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -80,9 +76,9 @@ export default function ProgressTracker() {
                 id="notes"
                 value={currentNotes}
                 onChange={(e) => setCurrentNotes(e.target.value)}
-                placeholder="Any observations or changes you've noticed..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-cerave-blue focus:border-transparent resize-none"
-                rows={3}
+                placeholder="Any observations or changes..."
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cerave-blue focus:border-cerave-blue resize-none transition-all hover:border-cerave-light-blue"
+                rows={2}
               />
             </div>
 
@@ -90,7 +86,7 @@ export default function ProgressTracker() {
               <Button
                 onClick={addCheckIn}
                 disabled={selectedSymptoms.length === 0}
-                className="flex-1 bg-cerave-blue hover:bg-cerave-blue-dark"
+                className="flex-1 bg-cerave-blue hover:bg-cerave-blue-dark hover:shadow-lg transition-all disabled:opacity-50"
               >
                 <CheckCircle className="w-4 h-4 mr-2" />
                 Save Check-In
@@ -104,7 +100,7 @@ export default function ProgressTracker() {
         </Card>
 
         {checkIns.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-3 max-h-96 overflow-y-auto">
             <h3 className="text-xl font-semibold text-gray-900">Your Check-Ins</h3>
             {checkIns
               .slice()
@@ -138,10 +134,12 @@ export default function ProgressTracker() {
         )}
 
         {checkIns.length === 0 && (
-          <div className="text-center py-12 text-gray-500">
-            <p>No check-ins yet. Start tracking your progress today!</p>
-          </div>
+          <Card className="border-cerave-blue/20 shadow-sm">
+            <CardContent className="text-center py-8">
+              <p className="text-gray-500">No check-ins yet. Start tracking your progress today!</p>
+            </CardContent>
+          </Card>
         )}
-    </div>
+    </>
   );
 }
