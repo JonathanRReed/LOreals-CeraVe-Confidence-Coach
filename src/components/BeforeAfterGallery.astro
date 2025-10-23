@@ -1,0 +1,61 @@
+---
+// Before/After gallery showing skincare progress
+const gallery = [
+  {
+    before: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&h=400&fit=crop&q=80',
+    after: 'https://images.unsplash.com/photo-1522337094846-8a818192de1f?w=400&h=400&fit=crop&q=80',
+    days: 30,
+    concern: 'Texture & Dullness'
+  },
+  {
+    before: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&h=400&fit=crop&q=70',
+    after: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=400&fit=crop&q=80',
+    days: 60,
+    concern: 'Acne & Redness'
+  },
+  {
+    before: 'https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?w=400&h=400&fit=crop&q=70',
+    after: 'https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?w=400&h=400&fit=crop&q=90',
+    days: 90,
+    concern: 'Dark Spots'
+  }
+];
+---
+
+<section class="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-cerave-blue mb-3">Real Results</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">See the difference consistency makes with CeraVe. Results may vary.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {gallery.map((item) => (
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+          <div class="grid grid-cols-2">
+            <div class="relative">
+              <img src={item.before} alt="Before" class="w-full h-48 object-cover" />
+              <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                Before
+              </div>
+            </div>
+            <div class="relative">
+              <img src={item.after} alt="After" class="w-full h-48 object-cover" />
+              <div class="absolute top-2 right-2 bg-cerave-blue text-white text-xs px-2 py-1 rounded">
+                After
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <p class="font-semibold text-cerave-blue mb-1">{item.days} Days</p>
+            <p class="text-sm text-gray-600">{item.concern}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-xs text-gray-500 mt-8 max-w-3xl mx-auto">
+      *Images are for illustrative purposes. Individual results may vary. Always perform a patch test before starting a new skincare routine.
+    </p>
+  </div>
+</section>

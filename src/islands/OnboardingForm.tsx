@@ -70,6 +70,28 @@ export default function OnboardingForm() {
     setProfile({ ...profile, concerns: Array.from(set) });
   };
 
+  const loadPreset = (preset: 'acne' | 'antiaging' | 'sensitive') => {
+    const presets = {
+      acne: {
+        skinType: 'oily' as SkinType,
+        concerns: ['acne', 'texture'] as Concern[],
+        sensitivity: 'low' as Sensitivity,
+      },
+      antiaging: {
+        skinType: 'dry' as SkinType,
+        concerns: ['texture', 'darkspots'] as Concern[],
+        sensitivity: 'medium' as Sensitivity,
+      },
+      sensitive: {
+        skinType: 'combo' as SkinType,
+        concerns: ['redness'] as Concern[],
+        sensitivity: 'high' as Sensitivity,
+      },
+    };
+    
+    setProfile({ ...profile, ...presets[preset] });
+  };
+
   return (
     <Card className="border-cerave-blue/20 lg:sticky lg:top-24">
       <CardHeader className="bg-gradient-to-r from-cerave-blue/10 to-cerave-light-blue/10">
@@ -81,6 +103,34 @@ export default function OnboardingForm() {
         </CardDescription>
       </CardHeader>
       <CardContent className="pt-6">
+        {!submitted && (
+          <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-cerave-blue/20">
+            <p className="text-xs font-semibold text-cerave-blue mb-2">Try an Example:</p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => loadPreset('acne')}
+                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white transition-all"
+              >
+                Acne-Prone
+              </button>
+              <button
+                type="button"
+                onClick={() => loadPreset('antiaging')}
+                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white transition-all"
+              >
+                Anti-Aging
+              </button>
+              <button
+                type="button"
+                onClick={() => loadPreset('sensitive')}
+                className="flex-1 px-3 py-2 bg-white text-xs font-medium text-cerave-blue border border-cerave-blue/30 rounded hover:bg-cerave-blue hover:text-white transition-all"
+              >
+                Sensitive
+              </button>
+            </div>
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="skinType" className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">

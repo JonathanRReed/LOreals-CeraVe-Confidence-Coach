@@ -11,14 +11,14 @@ export function buildPlan(p: UserProfile): RoutinePlan {
           name: 'CeraVe Foaming Facial Cleanser',
           step: 'cleanse' as const,
           notes: 'Use morning and night',
-          imageUrl: 'https://images.unsplash.com/photo-1556228852-80a3c87e9d82?w=200&h=200&fit=crop',
+          imageUrl: 'https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=200&h=200&fit=crop&q=80',
         }
       : {
           id: 'cleanser1',
           name: 'CeraVe Hydrating Facial Cleanser',
           step: 'cleanse' as const,
           notes: 'Use morning and night',
-          imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop',
+          imageUrl: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=200&h=200&fit=crop&q=80',
         };
 
   am.push(cleanser);
@@ -30,7 +30,7 @@ export function buildPlan(p: UserProfile): RoutinePlan {
       name: 'CeraVe AM Facial Moisturizing Lotion SPF 30',
       step: 'spf',
       notes: 'Apply generously every morning',
-      imageUrl: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&h=200&fit=crop',
+      imageUrl: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&h=200&fit=crop&q=80',
     });
   } else {
     am.push({
@@ -38,7 +38,7 @@ export function buildPlan(p: UserProfile): RoutinePlan {
       name: 'CeraVe Moisturizing Lotion',
       step: 'moisturize',
       notes: 'Follow with separate SPF',
-      imageUrl: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=200&h=200&fit=crop',
+      imageUrl: 'https://images.unsplash.com/photo-1556228578-dd04a6e062ca?w=200&h=200&fit=crop&q=80',
     });
   }
 
@@ -54,7 +54,7 @@ export function buildPlan(p: UserProfile): RoutinePlan {
         p.sensitivity === 'high'
           ? 'Start with 2x per week'
           : 'Start with 3x per week',
-      imageUrl: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&h=200&fit=crop&sat=-100',
+      imageUrl: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&h=200&fit=crop&q=80',
     });
   }
 
@@ -63,7 +63,7 @@ export function buildPlan(p: UserProfile): RoutinePlan {
     name: 'CeraVe PM Facial Moisturizing Lotion',
     step: 'moisturize',
     notes: 'Apply nightly',
-    imageUrl: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=200&h=200&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1556228841-94599dc62144?w=200&h=200&fit=crop&q=80',
   });
 
   const rampNotes = needsRetinol

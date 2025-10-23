@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Camera, CheckCircle } from 'lucide-react';
@@ -14,8 +14,25 @@ export default function ProgressTracker() {
   const [checkIns, setCheckIns] = useState<CheckIn[]>([]);
   const [currentNotes, setCurrentNotes] = useState('');
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
+  const [streak, setStreak] = useState(0);
 
   const symptoms = ['Redness', 'Dryness', 'Oiliness', 'Breakouts', 'Irritation', 'Improvement'];
+
+  // Calculate streak when check-ins change
+  useEffect(() => {
+    if (checkIns.length > 0) {
+      const sortedCheckins = [...checkIns].sort((a, b) => b.day - a.day);
+      let currentStreak = 1;
+      for (let i = 0; i < sortedCheckins.length - 1; i++) {
+        if (sortedCheckins[i].day - sortedCheckins[i + 1].day === 1) {
+          currentStreak++;
+        } else {
+          break;
+        }
+      }
+      setStreak(currentStreak);
+    }
+  }, [checkIns]);
 
   const addCheckIn = () => {
     const newCheckIn: CheckIn = {
@@ -98,6 +115,19 @@ export default function ProgressTracker() {
             </div>
           </CardContent>
         </Card>
+
+        {checkIns.length > 0 && (
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="p-4 bg-gradient-to-br from-cerave-blue/10 to-cerave-light-blue/10 rounded-lg border border-cerave-blue/20">
+              <p className="text-2xl font-bold text-cerave-blue">{streak} 🔥</p>
+              <p className="text-xs text-gray-600">Day Streak</p>
+            </div>
+            <div className="p-4 bg-gradient-to-br from-cerave-blue/10 to-cerave-light-blue/10 rounded-lg border border-cerave-blue/20">
+              <p className="text-2xl font-bold text-cerave-blue">{checkIns.length}</p>
+              <p className="text-xs text-gray-600">Total Check-ins</p>
+            </div>
+          </div>
+        )}
 
         {checkIns.length > 0 && (
           <div className="space-y-3 max-h-96 overflow-y-auto">

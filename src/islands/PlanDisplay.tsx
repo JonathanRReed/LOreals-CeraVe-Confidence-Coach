@@ -3,7 +3,7 @@ import type { RoutinePlan, UserProfile } from '../lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Progress } from '../components/ui/progress';
-import { Sun, Moon, Droplets, Shield, Sparkles, Info } from 'lucide-react';
+import { Sun, Moon, Droplets, Shield, Sparkles, Info, Printer, Download, Share2 } from 'lucide-react';
 
 interface PlanData {
   profile: UserProfile;
@@ -21,6 +21,30 @@ const stepIcons = {
 export default function PlanDisplay() {
   const [planData, setPlanData] = useState<PlanData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handlePrint = () => {
+    window.print();
+    console.log('routine_printed');
+  };
+
+  const handleDownload = () => {
+    // Mock download functionality
+    console.log('routine_downloaded');
+    alert('Download feature coming soon! Your routine will be saved as a PDF.');
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'My CeraVe Skincare Routine',
+        text: 'Check out my personalized CeraVe routine!',
+        url: window.location.href,
+      });
+    } else {
+      console.log('routine_shared');
+      alert('Share link copied! (Demo feature)');
+    }
+  };
 
   useEffect(() => {
     const handlePlanReady = (event: Event) => {
@@ -83,7 +107,32 @@ export default function PlanDisplay() {
     <div className="space-y-6 animate-fadeIn">
       <Card className="border-cerave-blue/30 shadow-lg">
         <CardHeader className="bg-gradient-to-r from-cerave-blue to-cerave-light-blue text-white">
-          <CardTitle className="text-xl text-center">Your Personalized Routine</CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-xl">Your Personalized Routine</CardTitle>
+            <div className="flex gap-2">
+              <button
+                onClick={handlePrint}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                title="Print routine"
+              >
+                <Printer className="w-5 h-5" />
+              </button>
+              <button
+                onClick={handleDownload}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                title="Download as PDF"
+              >
+                <Download className="w-5 h-5" />
+              </button>
+              <button
+                onClick={handleShare}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                title="Share routine"
+              >
+                <Share2 className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
         </CardHeader>
         <CardContent className="pt-5">
           <div className="mb-5">
@@ -198,6 +247,37 @@ export default function PlanDisplay() {
               </ul>
             </div>
           )}
+        </CardContent>
+      </Card>
+
+      <Card className="border-cerave-blue/20 bg-gradient-to-br from-blue-50/50 to-white">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-lg text-cerave-blue flex items-center gap-2">
+            <Sparkles className="w-5 h-5" />
+            Smart Recommendations
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="p-3 bg-white rounded-lg border border-cerave-blue/20">
+            <p className="text-sm font-semibold text-gray-900 mb-1">💡 Pro Tip</p>
+            <p className="text-xs text-gray-600">
+              Apply products on damp skin for better absorption. Wait 60 seconds between each step.
+            </p>
+          </div>
+          {planData.profile.concerns.includes('acne') && (
+            <div className="p-3 bg-white rounded-lg border border-cerave-blue/20">
+              <p className="text-sm font-semibold text-gray-900 mb-1">🎯 For Your Concern</p>
+              <p className="text-xs text-gray-600">
+                After 30 days, you may consider adding a gentle exfoliant 1-2x per week.
+              </p>
+            </div>
+          )}
+          <div className="p-3 bg-white rounded-lg border border-cerave-blue/20">
+            <p className="text-sm font-semibold text-gray-900 mb-1">🌙 Evening Boost</p>
+            <p className="text-xs text-gray-600">
+              Consider double cleansing at night if you wear makeup or SPF all day.
+            </p>
+          </div>
         </CardContent>
       </Card>
     </div>
