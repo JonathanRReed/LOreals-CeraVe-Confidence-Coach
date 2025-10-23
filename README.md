@@ -1,43 +1,25 @@
-# Astro Starter Kit: Minimal
+# Confidence Coach — CeraVe Prototype
 
-```sh
-bun create astro@latest -- --template minimal
-```
+## DEMO: THIS IS A PROTOTYPE
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Why
 
-## 🚀 Project Structure
+Made for a project for the global carerr accelerator program working with L'Oréal for their brand CeraVe.
 
-Inside of your Astro project, you'll see the following folders and files:
+## What
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+A one-page Astro prototype designed to help first-time skincare users build a routine with confidence. Built for a UX research assignment focused on reducing overwhelm, unrealistic expectations, and fear of choosing the wrong product when starting skincare.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Stack
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Astro (one-page app with client islands)
 
-Any static assets, like images, can be placed in the `public/` directory.
+React/TS islands for interactive components
 
-## 🧞 Commands
+CSS variables for branding and accessibility
 
-All commands are run from the root of the project, from a terminal:
+TailwindCSS for styling
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+Shadcn UI for components
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Local state only — no backend required
