@@ -90,18 +90,20 @@ export default function PatchTestModal() {
   };
 
   return (
-    <div className="text-center py-8">
-      <h2 className="text-2xl font-bold text-cerave-blue mb-3">Safety First: Patch Testing</h2>
-      <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-        Before starting any new skincare product, especially actives like retinol, it's crucial to perform
-        a patch test to minimize the risk of irritation.
+    <div className="text-center">
+      <div className="w-16 h-16 bg-cerave-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+        <AlertTriangle className="w-8 h-8 text-cerave-blue" />
+      </div>
+      <h2 className="text-2xl font-bold text-cerave-blue mb-3">Safety First</h2>
+      <p className="text-gray-600 mb-6">
+        Learn how to safely patch test new products to minimize irritation risk.
       </p>
       <Button
         onClick={() => {
           setIsOpen(true);
           console.log('patchtest_started');
         }}
-        className="bg-cerave-blue hover:bg-cerave-blue-dark"
+        className="w-full bg-cerave-blue hover:bg-cerave-blue-dark"
         size="lg"
       >
         Start Patch Test Guide

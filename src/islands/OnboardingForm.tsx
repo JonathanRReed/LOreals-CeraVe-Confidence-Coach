@@ -50,36 +50,18 @@ export default function OnboardingForm() {
     setProfile({ ...profile, concerns: Array.from(set) });
   };
 
-  if (submitted) {
-    return (
-      <Card className="max-w-2xl mx-auto border-cerave-blue/20">
-        <CardHeader className="bg-gradient-to-r from-cerave-blue/10 to-cerave-light-blue/10">
-          <CardTitle className="text-cerave-blue">Your Routine is Ready!</CardTitle>
-          <CardDescription>Scroll down to view your personalized plan</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-6">
-          <Button
-            onClick={() => setSubmitted(false)}
-            variant="outline"
-            className="w-full"
-          >
-            Edit My Profile
-          </Button>
-        </CardContent>
-      </Card>
-    );
-  }
-
   return (
-    <Card className="max-w-3xl mx-auto border-cerave-blue/20">
+    <Card className="border-cerave-blue/20 sticky top-24">
       <CardHeader className="bg-gradient-to-r from-cerave-blue/10 to-cerave-light-blue/10">
-        <CardTitle className="text-cerave-blue">Build Your Personalized Routine</CardTitle>
+        <CardTitle className="text-cerave-blue text-xl">
+          {submitted ? 'Your Profile' : 'Build Your Routine'}
+        </CardTitle>
         <CardDescription>
-          Answer a few questions to get a skincare routine designed for your needs
+          {submitted ? 'Your personalized plan is ready →' : 'Answer a few questions to get started'}
         </CardDescription>
       </CardHeader>
       <CardContent className="pt-6">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="skinType" className="block text-sm font-medium text-gray-700 mb-2">
               What's your skin type?
@@ -161,7 +143,7 @@ export default function OnboardingForm() {
             className="w-full bg-cerave-blue hover:bg-cerave-blue-dark text-white"
             size="lg"
           >
-            Build My Routine
+            {submitted ? 'Update My Routine' : 'Build My Routine'}
           </Button>
         </form>
       </CardContent>

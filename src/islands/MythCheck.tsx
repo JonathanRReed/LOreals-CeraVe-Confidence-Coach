@@ -26,14 +26,13 @@ export default function MythCheck() {
   };
 
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-cerave-blue mb-3">Myth Check Tool</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Confused by a skincare claim? Paste it here to see how it relates to evidence-based dermatology.
-          </p>
-        </div>
+    <div className="container mx-auto px-4 max-w-5xl">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-cerave-blue mb-3">Myth Check Tool</h2>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          Confused by a skincare claim? Paste it here to see how it relates to evidence-based dermatology.
+        </p>
+      </div>
 
         <Card className="border-cerave-blue/20">
           <CardHeader>
@@ -120,7 +119,6 @@ export default function MythCheck() {
             </CardContent>
           </Card>
         )}
-      </div>
-    </section>
+    </div>
   );
 }

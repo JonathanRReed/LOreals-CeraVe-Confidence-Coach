@@ -37,14 +37,13 @@ export default function ProgressTracker() {
   };
 
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-cerave-blue mb-3">Track Your Progress</h2>
-          <p className="text-gray-600">
-            Regular check-ins help you see patterns and improvements over time.
-          </p>
-        </div>
+    <div className="container mx-auto px-4 max-w-5xl">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-cerave-blue mb-3">Track Your Progress</h2>
+        <p className="text-gray-600">
+          Regular check-ins help you see patterns and improvements over time.
+        </p>
+      </div>
 
         <Card className="border-cerave-blue/20 mb-6">
           <CardHeader>
@@ -143,7 +142,6 @@ export default function ProgressTracker() {
             <p>No check-ins yet. Start tracking your progress today!</p>
           </div>
         )}
-      </div>
-    </section>
+    </div>
   );
 }
