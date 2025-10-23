@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://<YOUR-GITHUB-USERNAME>.github.io',
+  site: 'https://jonathanrreed.github.io',
   base: '/LOreals-CeraVe-Confidence-Coach',
   integrations: [react(), tailwind({ applyBaseStyles: false })]
 });
